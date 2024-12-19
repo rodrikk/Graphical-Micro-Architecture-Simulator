@@ -55,15 +55,17 @@ font-weight: bold;\
 .ace-github .ace_cursor {\
 color: black;\
 }\
-.ace-github .ace_marker-layer .ace_active-line {\
+.ace-github.ace_focus .ace_marker-layer .ace_active-line {\
 background: rgb(255, 255, 204);\
+}\
+.ace-github .ace_marker-layer .ace_active-line {\
+background: rgb(245, 245, 245);\
 }\
 .ace-github .ace_marker-layer .ace_selection {\
 background: rgb(181, 213, 255);\
 }\
 .ace-github.ace_multiselect .ace_selection.ace_start {\
 box-shadow: 0 0 3px 0px white;\
-border-radius: 2px;\
 }\
 .ace-github.ace_nobold .ace_line > span {\
 font-weight: normal !important;\
@@ -85,6 +87,9 @@ background-color : rgba(0, 0, 0, 0.07);\
 background: rgb(250, 250, 255);\
 border: 1px solid rgb(200, 200, 250);\
 }\
+.ace-github .ace_invisible {\
+color: #BFBFBF\
+}\
 .ace-github .ace_print-margin {\
 width: 1px;\
 background: #e8e8e8;\
@@ -96,3 +101,11 @@ background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZ
     var dom = require("../lib/dom");
     dom.importCssString(exports.cssText, exports.cssClass);
 });
+                (function() {
+                    window.require(["ace/theme/github"], function(m) {
+                        if (typeof module == "object" && typeof exports == "object" && module) {
+                            module.exports = m;
+                        }
+                    });
+                })();
+            

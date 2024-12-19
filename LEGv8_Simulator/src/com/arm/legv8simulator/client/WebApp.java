@@ -131,7 +131,7 @@ public class WebApp implements EntryPoint {
 		// build the UI
 		initUIComponents();
 		buildSingleCycleUI();
-		//buildSimulationUI();
+		buildSimulationUI();
 		
 		// start the source code editor and set its theme and mode
 		editor.startEditor(); // must be called before calling setTheme/setMode/etc.
@@ -183,31 +183,31 @@ public class WebApp implements EntryPoint {
 	}
 
 	// Builds the GUI for the simulation execution mode
-//	private void buildSimulationUI() {
-//		page.add(controlPanel);
-//		if (contentPanel != null) page.remove(contentPanel);
-//		contentPanel = new HorizontalPanel();
-//		contentPanel.setHeight("100%");
-//		contentPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-//		contentPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
-//		contentPanel.add(editorPanel);
-//		int editorHeight = Window.getClientHeight()-controlPanel.getOffsetHeight()
-//				-BANNER_HEIGHT-VERTICAL_PADDING;
-//		if (editorHeight > 200) {
-//			editor.setHeight(editorHeight + "px");
-//		} else {
-//			editor.setHeight("200px");
-//		}
-//		editor.setWidth("675px");
-//		HorizontalPanel padding = new HorizontalPanel();
-//		padding.setWidth("30px");
-//		contentPanel.add(padding);
-//		contentPanel.add(registerPanel);
-//		resetRegisterPanel();
-//		cpsrPanel.reset();
-//		page.add(contentPanel);
-//		//page.add(debugPanel);
-//	}
+	private void buildSimulationUI() {
+		page.add(controlPanel);
+		if (contentPanel != null) page.remove(contentPanel);
+		contentPanel = new HorizontalPanel();
+		contentPanel.setHeight("100%");
+		contentPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		contentPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
+		contentPanel.add(editorPanel);
+		int editorHeight = Window.getClientHeight()-controlPanel.getOffsetHeight()
+				-BANNER_HEIGHT-VERTICAL_PADDING;
+		if (editorHeight > 200) {
+			editor.setHeight(editorHeight + "px");
+		} else {
+			editor.setHeight("200px");
+		}
+		editor.setWidth("675px");
+		HorizontalPanel padding = new HorizontalPanel();
+		padding.setWidth("30px");
+		contentPanel.add(padding);
+		contentPanel.add(registerPanel);
+		resetRegisterPanel();
+		cpsrPanel.reset();
+		page.add(contentPanel);
+		//page.add(debugPanel);
+	}
 	
 	// builds the GUI for the single-cycle execution mode
 	private void buildSingleCycleUI() {
@@ -545,7 +545,7 @@ public class WebApp implements EntryPoint {
 		execModesLab = new Label("Execution Mode: ");
 		execModesLab.addStyleName("controlLabel");
 		executionModes = new ListBox();
-		//executionModes.addItem(SIMULATION);
+		executionModes.addItem(SIMULATION);
 		executionModes.addItem(SINGLE_CYCLE_VISUAL);
 		executionModes.addItem(PIPELINE_VISUAL);
 		executionModes.setVisibleItemCount(1);
@@ -555,10 +555,10 @@ public class WebApp implements EntryPoint {
 			public void onChange(ChangeEvent event) {
 				currentExMode = executionModes.getSelectedItemText();
 				switch (currentExMode) {
-//				case SIMULATION :
-//					buildSimulationUI();
-//					pipelineSim = null;
-//					break;
+				case SIMULATION :
+					buildSimulationUI();
+					pipelineSim = null;
+					break;
 				case SINGLE_CYCLE_VISUAL :
 					buildSingleCycleUI();
 					pipelineSim = null;
